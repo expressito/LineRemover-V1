@@ -3,7 +3,6 @@
 
 import os
 import time
-from tqdm import tqdm
 
 words = []
 while True:
