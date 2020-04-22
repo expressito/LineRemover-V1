@@ -34,5 +34,3 @@ with open(directory) as oldfile, open(exitfile, 'w') as newfile:
             newfile.write(line)
 oldfile.close()
 newfile.close()
-
-
