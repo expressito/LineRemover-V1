@@ -1,5 +1,5 @@
-# Created by Express | 21/09/2020 | 18:59
-# Program for line suppression based on blacklisted words
+# Created by Express | 22/04/2020 | 18:59
+# Program for line suppression based on blacklisted words.
 
 import os
 import time
