@@ -2,7 +2,6 @@
 # Program for line suppression based on blacklisted words.
 
 import os
-import time
 
 words = []
 while True:
