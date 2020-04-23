@@ -1,34 +1,29 @@
 # Created by Express | 22/04/2020 | 18:59
+# Contributors: Rififi | 23/04/2020 | 12:21
 # Program for line suppression based on blacklisted words.
 
 import os
 
 words = []
-while True:
-    blacklist = input("Enter all blacklisted words one by one : ")
-    words.append(blacklist)
-    if blacklist == "exitprogram":
-        words.remove("exitprogram")
-        break
-    else:
-        continue
+rawIn = None
+while rawIn != "":
+    rawIn = input("Enter all blacklisted words one by one : ")
+    if rawIn != "":
+        words.append(rawIn)
 
-print(words)
+print("Black listed words are : ", words)
 
-directory = input("Enter the *.txt file directory : ")
+fileFound = None
+while not fileFound:
+    inFilePath = input("Enter the input file's path : ")
+    fileFound = os.path.isfile(inFilePath)
+    print("File found !" if fileFound else "File not found, please retry !")
 
-while os.path.isfile(directory) == False:
-    print("File not found, retry !")
-    directory = input("Enter the *.txt file directory : ")
-    if os.path.isfile(directory) == True:
-        print("File found !")
-        break
+outFilePath = input("Enter the output file's path : ")#Todo : check validity of entered path.
 
-exitfile = input("Enter the output file directory : ")
-
-with open(directory) as oldfile, open(exitfile, 'w') as newfile:
-    for line in oldfile:
-        if not any(bad_word in line for bad_word in words):
-            newfile.write(line)
-oldfile.close()
-newfile.close()
+with open(inFilePath) as oldFile, open(outFilePath, 'w') as newFile:
+    for line in oldFile:
+        if not any(bad_word in line for bad_word in words): #Todo : with a RegEx, be sure to only find whole words (between spaces/delimiters), be cause if "bon" is blacklisted, "bonjour" will trigger the program for example.
+            newFile.write(line)
+    oldFile.close()
+    newFile.close()
